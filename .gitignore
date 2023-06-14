@@ -1,0 +1,8 @@
+.DS_Store
+*.DS_Store
+.settings/*
+.vscode/settings.json
+bin/*
+.vscode/*
+target/classes/*
+test-output/*
