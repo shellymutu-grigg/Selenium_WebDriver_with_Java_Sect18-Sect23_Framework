@@ -13,6 +13,7 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
+import section19Code.pageObjects.Section19Code_LandingPage;
 
 public class Section18Code {
 
@@ -25,8 +26,10 @@ public class Section18Code {
 		String productNameString = "ZARA COAT 3";
 
 		// Navigate to page
-		webDriver.get("https://rahulshettyacademy.com/client/");
 		webDriver.manage().window().maximize();
+		webDriver.get("https://rahulshettyacademy.com/client/");
+
+		Section19Code_LandingPage landingPage = new Section19Code_LandingPage(webDriver);
 
 		// Login to site
 		webDriver.findElement(By.id("userEmail")).sendKeys("shellymutugrigg@gmail.com");
