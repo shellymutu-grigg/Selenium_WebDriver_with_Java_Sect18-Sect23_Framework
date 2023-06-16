@@ -33,7 +33,7 @@ public class Section19Code_CheckoutPage extends Section19Code_AbstractComponents
 		PageFactory.initElements(webDriver, this);
 	}
 
-	public void selectCountry(String countryName) {
+	public void selectCountry(String countryName) throws InterruptedException {
 		Actions action = new Actions(webDriver);
 		action.sendKeys(country, countryName).build().perform();
 

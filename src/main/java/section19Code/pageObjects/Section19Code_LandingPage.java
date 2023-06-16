@@ -21,6 +21,9 @@ public class Section19Code_LandingPage extends Section19Code_AbstractComponents 
 	@FindBy(id = "login")
 	WebElement login;
 
+	@FindBy(css = "[class*='flyInOut']")
+	WebElement errorMessage;
+
 	public Section19Code_LandingPage(WebDriver webDriver) {
 		super(webDriver);
 		// Instance initialisation
@@ -34,6 +37,12 @@ public class Section19Code_LandingPage extends Section19Code_AbstractComponents 
 		login.click();
 		Section19Code_ProductCatalogue productCatalogue = new Section19Code_ProductCatalogue(webDriver);
 		return productCatalogue;
+	}
+
+	public String getErrorMessage() throws InterruptedException {
+
+		waitForWebElementToAppear(errorMessage);
+		return errorMessage.getText();
 	}
 
 	public void navigate() {

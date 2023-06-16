@@ -33,7 +33,7 @@ public class Section19Code_ProductCatalogue extends Section19Code_AbstractCompon
 		PageFactory.initElements(webDriver, this);
 	}
 
-	public List<WebElement> getProductList() {
+	public List<WebElement> getProductList() throws InterruptedException {
 		waitForElementToAppear(productsBy);
 		return products;
 	}

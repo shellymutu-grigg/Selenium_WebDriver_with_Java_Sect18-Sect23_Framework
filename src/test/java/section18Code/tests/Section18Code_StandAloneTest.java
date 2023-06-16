@@ -1,4 +1,4 @@
-package section18Code;
+package section18Code.tests;
 
 import java.time.Duration;
 import java.util.List;
@@ -15,7 +15,7 @@ import org.testng.Assert;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import section19Code.pageObjects.Section19Code_LandingPage;
 
-public class Section18Code {
+public class Section18Code_StandAloneTest {
 
 	public static void main(String[] args) throws InterruptedException {
 		WebDriverManager.chromedriver().setup();
