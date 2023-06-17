@@ -3,6 +3,9 @@
 
 <!-- Run the tests in parallel -->
 <suite parallel = "tests" name="Suite">
+	<listeners>
+		<listener class-name="section20Code.testComponents.Section22Code_Listeners"/>
+	</listeners>
 	<test thread-count="5" name="Submit Order Test">
     	<classes>
       		<class name="section19Code.tests.Section19Code_SubmitOrderTest"/>

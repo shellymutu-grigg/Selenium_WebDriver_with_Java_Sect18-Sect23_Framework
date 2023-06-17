@@ -1,13 +1,9 @@
 package section19Code.tests;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
-import org.apache.commons.io.FileUtils;
-import org.openqa.selenium.OutputType;
-import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
@@ -83,13 +79,4 @@ public class Section19Code_SubmitOrderTest extends Section20Code_BaseTest {
 
 	}
 
-	public String getScreenshot(String testCaseName) throws IOException {
-
-		TakesScreenshot screenshotAction = (TakesScreenshot) webDriver;
-		File screenshotTakenFile = screenshotAction.getScreenshotAs(OutputType.FILE);
-		File screenshOutputFile = new File(System.getProperty("user.dir") + "//Desktop//" + testCaseName + ".png");
-		FileUtils.copyFile(screenshotTakenFile, screenshOutputFile);
-		return System.getProperty("user.dir") + "//Desktop//" + testCaseName + ".png";
-
-	}
 }

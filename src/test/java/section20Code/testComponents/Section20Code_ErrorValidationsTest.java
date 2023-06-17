@@ -5,7 +5,6 @@ import java.util.List;
 
 import org.openqa.selenium.WebElement;
 import org.testng.Assert;
-import org.testng.AssertJUnit;
 import org.testng.annotations.Test;
 
 import section19Code.pageObjects.Section19Code_CartPage;
@@ -13,7 +12,8 @@ import section19Code.pageObjects.Section19Code_ProductCatalogue;
 
 public class Section20Code_ErrorValidationsTest extends Section20Code_BaseTest {
 
-	@Test(groups = { "ErrorHandling" })
+	// Re-run test in the event of a failure with retry
+	@Test(groups = { "ErrorHandling" }, retryAnalyzer = Section22Code_Retry.class)
 	public void validateLoginError() throws IOException, InterruptedException {
 
 		// Login to site
@@ -21,7 +21,7 @@ public class Section20Code_ErrorValidationsTest extends Section20Code_BaseTest {
 				"gazxHSwK$oBbd*c43t4S2");
 
 		// Verify error message
-		AssertJUnit.assertEquals("Incorrect email or password.", landingPage.getErrorMessage());
+		Assert.assertEquals("Incorrect email or password.", landingPage.getErrorMessage());
 
 	}
 
