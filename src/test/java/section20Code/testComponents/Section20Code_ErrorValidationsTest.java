@@ -1,6 +1,7 @@
 package section20Code.testComponents;
 
 import java.io.IOException;
+import java.text.MessageFormat;
 import java.util.List;
 
 import org.openqa.selenium.WebElement;
@@ -18,7 +19,9 @@ public class Section20Code_ErrorValidationsTest extends Section20Code_BaseTest {
 
 		// Login to site
 		Section19Code_ProductCatalogue productCatalogue = landingPage.loginApplication("shellymutugrigg2@gmail.com",
-				"gazxHSwK$oBbd*c43t4S2");
+				"gazxHSwK$oBbd*c43t4S24");
+
+		System.out.println(MessageFormat.format("Landing Page Message: {0}", landingPage.getErrorMessage()));
 
 		// Verify error message
 		Assert.assertEquals("Incorrect email or password.", landingPage.getErrorMessage());

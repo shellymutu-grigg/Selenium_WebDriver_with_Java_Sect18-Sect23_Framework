@@ -5,17 +5,17 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>shellymutu-grigg</groupId>
-  <artifactId>Selenium_WebDriver_wirh_Java_Sect18</artifactId>
+  <artifactId>selenium_webdriver_with_java_sect18-sect21</artifactId>
   <version>0.0.1-SNAPSHOT</version>
 
-  <name>Selenium_WebDriver_wirh_Java_Sect18</name>
+  <name>selenium_webdriver_with_java_sect18-sect21</name>
   <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-    <maven.compiler.source>1.7</maven.compiler.source>
-    <maven.compiler.target>1.7</maven.compiler.target>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
   </properties>
 
   <dependencies>
@@ -47,11 +47,6 @@
 	    <artifactId>jackson-databind</artifactId>
 	    <version>2.13.3</version>
 	</dependency>
-	<dependency>
-		<groupId>shellymutu-grigg</groupId>
-		<artifactId>selenium_webdriver_with_java</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-	</dependency>
 	
 	<!-- https://mvnrepository.com/artifact/com.aventstack/extentreports -->
 	<dependency>
@@ -61,6 +56,66 @@
 	</dependency>
 
   </dependencies>
+  <profiles>
+	  <profile>
+		  <id>Regression</id>
+		   
+			<build>
+			  	<pluginManagement>
+					<plugins>  
+					 <plugin>
+				        <groupId>org.apache.maven.plugins</groupId>
+				        <artifactId>maven-surefire-plugin</artifactId>
+				        <version>3.1.2</version>
+				        <configuration>
+				          <suiteXmlFiles>
+				            <suiteXmlFile>testSuites/testng.xml</suiteXmlFile>
+				          </suiteXmlFiles>
+				        </configuration>
+			     	</plugin>
+			      </plugins>
+		    	</pluginManagement>
+			</build>
+	  	</profile>
+	  <profile>
+		  <id>Purchase</id>
+		  <build>
+			  	<pluginManagement>
+					<plugins>  
+					 <plugin>
+				        <groupId>org.apache.maven.plugins</groupId>
+				        <artifactId>maven-surefire-plugin</artifactId>
+				        <version>3.1.2</version>
+				        <configuration>
+				          <suiteXmlFiles>
+				            <suiteXmlFile>testSuites/purchaseOrderTest.xml</suiteXmlFile>
+				          </suiteXmlFiles>
+				        </configuration>
+			     	</plugin>
+			      </plugins>
+		    	</pluginManagement>
+			</build>
+	  </profile>
+	  <profile>
+		  <id>ErrorHandling</id>
+		  <build>
+			  	<pluginManagement>
+					<plugins>  
+					 <plugin>
+				        <groupId>org.apache.maven.plugins</groupId>
+				        <artifactId>maven-surefire-plugin</artifactId>
+				        <version>3.1.2</version>
+				        <configuration>
+				          <suiteXmlFiles>
+				            <suiteXmlFile>testSuites/errorValidationTests.xml</suiteXmlFile>
+				          </suiteXmlFiles>
+				        </configuration>
+			     	</plugin>
+			      </plugins>
+		    	</pluginManagement>
+			</build>
+	  </profile>
+  </profiles>
 
   <build>
     <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
@@ -104,6 +159,56 @@
           <artifactId>maven-project-info-reports-plugin</artifactId>
           <version>3.0.0</version>
         </plugin>
+        
+         <!-- Maven Surefire Plugin -->
+        <plugin>
+	        <groupId>org.apache.maven.plugins</groupId>
+	        <artifactId>maven-surefire-plugin</artifactId>
+	        <version>3.1.2</version>
+	        <configuration>
+	          <suiteXmlFiles>
+	            <suiteXmlFile>testSuites/testng.xml</suiteXmlFile>
+	          </suiteXmlFiles>
+	        </configuration>
+     	</plugin>
+     	
+     	<plugin>
+		    <groupId>org.apache.maven.plugins</groupId>
+		    <artifactId>maven-compiler-plugin</artifactId>
+		    <version>3.8.1</version>
+		    <configuration>
+		        <source>16</source>
+		        <target>16</target>
+		        <!--                    <release>16</release>-->
+		        <fork>true</fork>
+		        <compilerArgs>
+		            <arg>-Xlint:all</arg>
+		            <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.code=ALL-UNNAMED</arg>
+		            <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.comp=ALL-UNNAMED</arg>
+		            <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.file=ALL-UNNAMED</arg>
+		            <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.main=ALL-UNNAMED</arg>
+		            <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.model=ALL-UNNAMED</arg>
+		            <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.parser=ALL-UNNAMED</arg>
+		            <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.processing=ALL-UNNAMED</arg>
+		            <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.tree=ALL-UNNAMED</arg>
+		            <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.util=ALL-UNNAMED</arg>
+		            <arg>-J--add-opens=jdk.compiler/com.sun.tools.javac.jvm=ALL-UNNAMED</arg>
+		        </compilerArgs>
+		        <!--for unmappable characters in classes-->
+		        <encoding>UTF-8</encoding>
+		        <showDeprecation>true</showDeprecation>
+		        <showWarnings>true</showWarnings>
+		        <!--for lombok annotations to resolve-->
+		        <!--contradictory to maven, intelliJ fails with this-->
+		        <annotationProcessorPaths>
+		            <path>
+		                <groupId>org.projectlombok</groupId>
+		                <artifactId>lombok</artifactId>
+		                <version>1.18.16</version>
+		            </path>
+		        </annotationProcessorPaths>
+		    </configuration>
+		</plugin>
       </plugins>
     </pluginManagement>
   </build>
