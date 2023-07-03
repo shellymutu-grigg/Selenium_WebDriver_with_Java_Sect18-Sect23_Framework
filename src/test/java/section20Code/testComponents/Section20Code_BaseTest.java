@@ -38,14 +38,18 @@ public class Section20Code_BaseTest {
 		FileInputStream fileInputStream = new FileInputStream(System.getProperty("user.dir")
 				+ "//src//main//java//section20Code//resources//Section20Code_GlobalData.properties");
 		properties.load(fileInputStream);
-		String broswerNameString = properties.getProperty("browser");
 
-		if (broswerNameString.equalsIgnoreCase("chrome")) {
+		// If the value is sent via Maven commands use that value otherwise use the data
+		// in the GlobalData.properties file
+		String browserNameString = System.getProperty("browser") != null ? System.getProperty("browser")
+				: properties.getProperty("browser");
+
+		if (browserNameString.equalsIgnoreCase("chrome")) {
 			WebDriverManager.chromedriver().setup();
 			webDriver = new ChromeDriver();
-		} else if (broswerNameString.equalsIgnoreCase("firefox")) {
+		} else if (browserNameString.equalsIgnoreCase("firefox")) {
 			webDriver = new FirefoxDriver();
-		} else if (broswerNameString.equalsIgnoreCase("edge")) {
+		} else if (browserNameString.equalsIgnoreCase("edge")) {
 			webDriver = new EdgeDriver();
 		}
 
