@@ -10,10 +10,12 @@ import java.util.List;
 import java.util.Properties;
 
 import org.apache.commons.io.FileUtils;
+import org.openqa.selenium.Dimension;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.testng.annotations.AfterMethod;
@@ -44,9 +46,18 @@ public class Section20Code_BaseTest {
 		String browserNameString = System.getProperty("browser") != null ? System.getProperty("browser")
 				: properties.getProperty("browser");
 
-		if (browserNameString.equalsIgnoreCase("chrome")) {
+		if (browserNameString.contains("chrome")) {
+			ChromeOptions chromeOptions = new ChromeOptions();
 			WebDriverManager.chromedriver().setup();
-			webDriver = new ChromeDriver();
+			if (browserNameString.contains("headless")) {
+				chromeOptions.addArguments("headless");
+			}
+			webDriver = new ChromeDriver(chromeOptions);
+
+			// Even when running in headless mode ensure screen is maximised to view all
+			// elements
+			webDriver.manage().window().setSize(new Dimension(1440, 900));
+
 		} else if (browserNameString.equalsIgnoreCase("firefox")) {
 			webDriver = new FirefoxDriver();
 		} else if (browserNameString.equalsIgnoreCase("edge")) {
