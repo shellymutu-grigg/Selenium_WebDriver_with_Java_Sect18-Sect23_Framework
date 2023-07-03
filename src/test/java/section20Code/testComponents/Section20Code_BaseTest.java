@@ -48,6 +48,8 @@ public class Section20Code_BaseTest {
 
 		if (browserNameString.contains("chrome")) {
 			ChromeOptions chromeOptions = new ChromeOptions();
+			chromeOptions.addArguments("--ignore-ssl-errors=yes");
+			chromeOptions.addArguments("--ignore-certificate-errors");
 			WebDriverManager.chromedriver().setup();
 			if (browserNameString.contains("headless")) {
 				chromeOptions.addArguments("headless");
